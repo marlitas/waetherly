@@ -46,4 +46,13 @@ RSpec.describe 'book search request' do
       expect(book[:publisher]).to be_an(Array)
     end
   end
+
+  it 'returns error if quantity not an integer' do
+    get '/api/v1/book-search?location=denver,co&quantity=f'
+
+    expect(response).to_not be_successful
+
+    res = JSON.parse(response.body, symbolize_names: true)
+    expect(res[:error]).to eq('quantity must be an integer greater than zero')
+  end
 end
