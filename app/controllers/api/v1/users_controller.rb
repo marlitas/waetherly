@@ -2,6 +2,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     require "pry";binding.pry
     if params[:password] == params[:password_confirmation]
+      require "pry";binding.pry
       new_user = User.create(user_params)
     else
 
