@@ -20,26 +20,86 @@ RSpec.describe Forecast do
     },
     hourly: [
         {
-            dt: 1632690000,
-            temp: 303.98,
-            weather: [
-                {
-                    description: "broken clouds",
-                    icon: "04d"
-                }
-            ]
+          dt: 1632690000,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
         },
         {
-            dt: 1632693600,
-            temp: 303.99,
-            weather: [
-                {
-                    description: "broken clouds",
-                    icon: "04d"
-                }
-            ]
+          dt: 1632693600,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
+        },
+        {
+          dt: 1632690000,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
+        },
+        {
+          dt: 1632693600,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
+        },
+        {
+          dt: 1632690000,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
+        },
+        {
+          dt: 1632693600,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
+        },
+        {
+          dt: 1632690000,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
+        },
+        {
+          dt: 1632693600,
+          temp: 84.7,
+          weather: [
+            {
+              description: "broken clouds",
+              icon: "04d"
+            }
+          ]
         }
-    ],
+      ],
     daily: [
         {
           dt: 1632692756,
@@ -138,7 +198,8 @@ RSpec.describe Forecast do
   end
 
   it 'can create array of 5 days of weather' do
-    expected = [{
+    expected = [
+    {
       datetime: '2021-09-26 14:45:56 -0700',
       sunrise: '2021-09-26 05:51:34 -0700',
       sunset: '2021-09-26 17:50:40 -0700',
@@ -185,5 +246,61 @@ RSpec.describe Forecast do
     }]
     expect(@forecast.daily(@data[:daily]).length).to eq(5)
     expect(@forecast.daily(@data[:daily])).to eq(expected)
+  end
+
+  it 'can create array of 8 hours of weather' do
+    expected = [
+      {
+        datetime: '2021-09-26 14:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      },
+      {
+        datetime: '2021-09-26 15:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      },
+      {
+        datetime: '2021-09-26 14:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      },
+      {
+        datetime: '2021-09-26 15:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      },
+      {
+        datetime: '2021-09-26 14:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      },
+      {
+        datetime: '2021-09-26 15:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      },
+      {
+        datetime: '2021-09-26 14:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      },
+      {
+        datetime: '2021-09-26 15:00:00 -0700',
+        temperature: 84.7,
+        conditions: "broken clouds",
+        icon: "04d"
+      }
+    ]
+
+    expect(@forecast.hourly(@data[:hourly])).to eq(expected)
+    expect(@forecast.hourly(@data[:hourly]).length).to eq(8)
   end
 end
