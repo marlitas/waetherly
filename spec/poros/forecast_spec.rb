@@ -200,7 +200,7 @@ RSpec.describe Forecast do
   it 'can create array of 5 days of weather' do
     expected = [
     {
-      datetime: '2021-09-26 14:45:56 -0700',
+      date: '2021-09-26 14:45:56 -0700',
       sunrise: '2021-09-26 05:51:34 -0700',
       sunset: '2021-09-26 17:50:40 -0700',
       min_temp: 57.31,
@@ -209,7 +209,7 @@ RSpec.describe Forecast do
       icon: "02d",
     },
     {
-      datetime: '2021-09-26 14:45:56 -0700',
+      date: '2021-09-26 14:45:56 -0700',
       sunrise: '2021-09-26 05:51:34 -0700',
       sunset: '2021-09-26 17:50:40 -0700',
       min_temp: 55.71,
@@ -218,7 +218,7 @@ RSpec.describe Forecast do
       icon: '04d',
     },
     {
-      datetime: '2021-09-26 14:45:56 -0700',
+      date: '2021-09-26 14:45:56 -0700',
       sunrise: '2021-09-26 05:51:34 -0700',
       sunset: '2021-09-26 17:50:40 -0700',
       min_temp: 57.31,
@@ -227,7 +227,7 @@ RSpec.describe Forecast do
       icon: "02d",
     },
     {
-      datetime: '2021-09-26 14:45:56 -0700',
+      date: '2021-09-26 14:45:56 -0700',
       sunrise: '2021-09-26 05:51:34 -0700',
       sunset: '2021-09-26 17:50:40 -0700',
       min_temp: 55.71,
@@ -236,7 +236,7 @@ RSpec.describe Forecast do
       icon: '04d',
     },
     {
-      datetime: '2021-09-26 14:45:56 -0700',
+      date: '2021-09-26 14:45:56 -0700',
       sunrise: '2021-09-26 05:51:34 -0700',
       sunset: '2021-09-26 17:50:40 -0700',
       min_temp: 55.71,
@@ -251,49 +251,49 @@ RSpec.describe Forecast do
   it 'can create array of 8 hours of weather' do
     expected = [
       {
-        datetime: '2021-09-26 14:00:00 -0700',
+        time: '2021-09-26 14:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"
       },
       {
-        datetime: '2021-09-26 15:00:00 -0700',
+        time: '2021-09-26 15:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"
       },
       {
-        datetime: '2021-09-26 14:00:00 -0700',
+        time: '2021-09-26 14:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"
       },
       {
-        datetime: '2021-09-26 15:00:00 -0700',
+        time: '2021-09-26 15:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"
       },
       {
-        datetime: '2021-09-26 14:00:00 -0700',
+        time: '2021-09-26 14:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"
       },
       {
-        datetime: '2021-09-26 15:00:00 -0700',
+        time: '2021-09-26 15:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"
       },
       {
-        datetime: '2021-09-26 14:00:00 -0700',
+        time: '2021-09-26 14:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"
       },
       {
-        datetime: '2021-09-26 15:00:00 -0700',
+        time: '2021-09-26 15:00:00 -0700',
         temperature: 84.7,
         conditions: "broken clouds",
         icon: "04d"

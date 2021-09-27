@@ -1,13 +1,14 @@
 class Forecast
   attr_reader :current_weather,
               :daily_weather,
-              :hourly_weather
+              :hourly_weather,
+              :id
 
   def initialize(data)
     @current_weather = current(data[:current])
     @daily_weather = daily(data[:daily])
     @hourly_weather = hourly(data[:hourly])
-    #@id = nil
+    @id = nil
   end
 
   def current(data)
@@ -27,7 +28,7 @@ class Forecast
   def daily(data)
     data[0..4].map do |data|
       {
-        datetime: Time.at(data[:dt]).to_s,
+        date: Time.at(data[:dt]).to_s,
         sunrise: Time.at(data[:sunrise]).to_s,
         sunset: Time.at(data[:sunset]).to_s,
         max_temp: data[:temp][:max],
@@ -41,7 +42,7 @@ class Forecast
   def hourly(data)
     data[0..7].map do |data|
       {
-        datetime: Time.at(data[:dt]).to_s,
+        time: Time.at(data[:dt]).to_s,
         temperature: data[:temp],
         conditions: data[:weather].first[:description],
         icon: data[:weather].first[:icon],

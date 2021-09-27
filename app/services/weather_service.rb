@@ -1,6 +1,6 @@
 class WeatherService
   def self.get_forecast(location)
-    response = connect.get("/data/2.5/onecall?exclude=minutely,alerts&lat=#{location[:lat]}&lon=#{location[:lng]}")
+    response = connect.get("/data/2.5/onecall?exclude=minutely,alerts&units=imperial&lat=#{location[:lat]}&lon=#{location[:lng]}")
     JSON.parse(response.body, symbolize_names: true)
   end
 
