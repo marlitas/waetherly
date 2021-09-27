@@ -4,7 +4,7 @@ class BookFacade
     response = BookService.get_books(place)
     books = {
       total_books_found: response[:numFound],
-      books: response[:docs].map do |book|
+      books: response[:docs][0..quantity - 1].map do |book|
         Book.new(book)
       end
       }

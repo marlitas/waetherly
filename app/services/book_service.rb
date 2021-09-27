@@ -1,9 +1,10 @@
 class BookService
-  def connect
+  def self.connect
     Faraday.new(url: 'http://openlibrary.org')
   end
 
-  def get_books(place)
-      response = connect.get('/search.json') 
+  def self.get_books(place)
+    response = connect.get("/search.json?place=#{place}&subject=travel")
+    JSON.parse(response.body, symbolize_names: true)
   end
 end
