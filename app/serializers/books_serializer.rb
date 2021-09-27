@@ -1,6 +1,4 @@
 class BooksSerializer
-  include JSONAPI::Serializer
-
   def self.destination_books(books, forecast, location)
     {
       data: {
