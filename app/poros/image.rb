@@ -1,8 +1,13 @@
 class Image
+  attr_reader :location,
+              :image_url,
+              :credit,
+              :id
   def initialize(data, location)
     @location = location
     @image_url = data[:urls][:full]
     @credit = credit_hash(data[:user])
+    @id = nil
   end
 
   def credit_hash(data)
