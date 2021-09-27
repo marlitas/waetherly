@@ -13,9 +13,9 @@ class Forecast
 
   def current(data)
     {
-      datetime: Time.at(data[:dt]),
-      sunrise: Time.at(data[:sunrise]),
-      sunset: Time.at(data[:sunset]),
+      datetime: Time.at(data[:dt]).strftime('%Y-%m-%d %H:%M:%S %z'),
+      sunrise: Time.at(data[:sunrise]).strftime('%Y-%m-%d %H:%M:%S %z'),
+      sunset: Time.at(data[:sunset]).strftime('%Y-%m-%d %H:%M:%S %z'),
       temperature: data[:temp],
       feels_like: data[:feels_like],
       humidity: data[:humidity].to_f,
@@ -28,9 +28,9 @@ class Forecast
   def daily(data)
     data[0..4].map do |data|
       {
-        date: Time.at(data[:dt]).to_s,
-        sunrise: Time.at(data[:sunrise]).to_s,
-        sunset: Time.at(data[:sunset]).to_s,
+        date: Time.at(data[:dt]).strftime('%Y-%m-%d'),
+        sunrise: Time.at(data[:sunrise]).strftime('%Y-%m-%d %H:%M:%S %z'),
+        sunset: Time.at(data[:sunset]).strftime('%Y-%m-%d %H:%M:%S %z'),
         max_temp: data[:temp][:max],
         min_temp: data[:temp][:min],
         conditions: data[:weather].first[:description],
@@ -42,7 +42,7 @@ class Forecast
   def hourly(data)
     data[0..7].map do |data|
       {
-        time: Time.at(data[:dt]).to_s,
+        time: Time.at(data[:dt]).strftime('%H:%M:%S %z'),
         temperature: data[:temp],
         conditions: data[:weather].first[:description],
         icon: data[:weather].first[:icon],
