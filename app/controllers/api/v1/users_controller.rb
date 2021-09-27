@@ -1,17 +1,13 @@
 class Api::V1::UsersController < ApplicationController
   def create
-    require "pry";binding.pry
-    if params[:password] == params[:password_confirmation]
-      require "pry";binding.pry
-      new_user = User.create(user_params)
-    else
-
-    end
+    new_user = User.create(user_params)
+    new_user.api_keys.create(token: SecureRandom.hex)
+    render json: UsersSerializer.new(new_user)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.permit(:email, :password)
   end
 end
