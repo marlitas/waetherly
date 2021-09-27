@@ -25,16 +25,16 @@ RSpec.describe 'create user' do
       expect(new_count).to eq(old_count + 1)
     end
 
-    it "sends error if passwords don't match" do
+    xit "sends error if passwords don't match" do
 
     end
 
-    it 'sends error if email already taken' do
+    xit 'sends error if email already taken' do
 
     end
 
-    it 'sends error if fields are missing' do
-      
+    xit 'sends error if fields are missing' do
+
     end
   end
 end
