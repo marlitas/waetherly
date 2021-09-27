@@ -2,6 +2,7 @@
 require 'spec_helper'
 require 'simplecov'
 SimpleCov.start
+require 'faker'
 ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../config/environment', __dir__)
@@ -34,9 +35,11 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.include FactoryBot::Syntax::Methods
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -68,5 +71,11 @@ RSpec.configure do |config|
     config.filter_sensitive_data('<map_api>') {ENV['mapquest_key']}
     config.filter_sensitive_data('<weather_api>') {ENV['weather_key']}
     config.configure_rspec_metadata!
+  end
+end
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
   end
 end
