@@ -7,6 +7,8 @@ class Api::V1::SessionsController < ApplicationController
       api_key = user.api_keys.create! token: SecureRandom.hex
       session[:user_id] = user.id
       render json: UsersSerializer.new(user)
+    else
+      render json: {error: 'username or password incorrect'}, status: :bad_request
     end
   end
 end

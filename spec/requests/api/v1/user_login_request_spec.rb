@@ -30,4 +30,15 @@ RSpec.describe 'User Login Request' do
     expect(res[:data][:attributes]).to have_key(:api_key)
     expect(res[:data][:attributes][:api_key]).to be_a(String)
   end
+
+  it 'can send error if authentication fails' do
+    user = create(:user, password: 'password')
+    post '/api/v1/sessions', params: {
+      email: user.email,
+      password: 'boo'
+    }, as: :json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+  end
 end
