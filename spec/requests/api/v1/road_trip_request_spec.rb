@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Road Trip Request' do
-  it 'can send new road trip request' do
+  it 'can send new road trip request', :vcr do
     user = create(:user)
-    user.api_keys << 'asdoifjoin388fioa9'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    api_key = ApiKey.create(token: 'asdoifjoin388fioa9', user_id: user.id )
+
     post '/api/v1/road_trip', params: {
       origin: 'Denver,CO',
       destination: 'Moab, UT',
@@ -50,6 +52,6 @@ RSpec.describe 'Road Trip Request' do
   end
 
   xit 'impossible route if no roads connecting' do
-    
+
   end
 end
