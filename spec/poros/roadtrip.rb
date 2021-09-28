@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Roadtrip do
   before(:each) do
     @from = 'Denver,CO'
-    @to = 'Moab,UT '
+    @to = 'Moab,UT'
     @trip_length = '05:18:39'
     @arrival_forecast = {:dt=>1632870000,
                          :temp=>81.1,
@@ -19,5 +19,6 @@ RSpec.describe Roadtrip do
     expect(@roadtrip.end_city).to eq('Moab, UT')
     expect(@roadtrip.travel_time).to eq(@trip_length)
     expect(@roadtrip.weather_at_eta).to eq({ temperature: 81.1, conditions: 'broken clouds' })
+    expect(@roadtrip.id).to eq(nil)
   end
 end
