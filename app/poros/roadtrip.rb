@@ -13,9 +13,13 @@ class Roadtrip
   end
 
   def weather_hash(forecast)
-    {
-      temperature: forecast[:temp],
-      conditions: forecast[:weather].first[:description]
-    }
+    if forecast.nil?
+      {}
+    else
+      {
+        temperature: forecast[:temp],
+        conditions: forecast[:weather].first[:description]
+      }
+    end
   end
 end

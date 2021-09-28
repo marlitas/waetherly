@@ -62,7 +62,19 @@ RSpec.describe 'Road Trip Request' do
     expect(response.status).to eq(401)
   end
 
-  xit 'impossible route if no roads connecting' do
+  it 'impossible route if no roads connecting', :vcr do
+    user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    api_key = ApiKey.create(token: 'asdoifjoin388fioa9', user_id: user.id )
 
+    post '/api/v1/road_trip', params: {
+      origin: 'Denver,CO',
+      destination: 'Honolulu,HI',
+      api_key: 'asdoifjoin388fioa9'
+    }, as: :json
+
+    expect(response).to be_successful
+
+    res = JSON.parse(response.body, symbolize_names: true)
   end
 end
