@@ -77,4 +77,15 @@ RSpec.describe 'Road Trip Request' do
 
     res = JSON.parse(response.body, symbolize_names: true)
   end
+
+  it 'returns error if current_user nil', :vcr do
+    post '/api/v1/road_trip', params: {
+      origin: 'Denver,CO',
+      destination: 'Moab,UT',
+      api_key: ''
+    }, as: :json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
+  end
 end
