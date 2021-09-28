@@ -1,4 +1,6 @@
 class Api::V1::BooksController < ApplicationController
+  skip_before_action :require_authentication
+  
   def index
     quantity = params[:quantity].to_i
     if params[:quantity] == quantity.to_s && quantity > 0
