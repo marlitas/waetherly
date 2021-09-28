@@ -47,8 +47,19 @@ RSpec.describe 'Road Trip Request' do
     expect(res[:data][:attributes][:weather_at_eta][:conditions]).to be_a(String)
   end
 
-  xit 'sends error if api_key incorrect' do
+  it 'sends error if api_key incorrect' do
+    user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    api_key = ApiKey.create(token: 'asdoifjoin388fioa9', user_id: user.id )
 
+    post '/api/v1/road_trip', params: {
+      origin: 'Denver,CO',
+      destination: 'Moab, UT',
+      api_key: 'blah'
+    }, as: :json
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
   end
 
   xit 'impossible route if no roads connecting' do

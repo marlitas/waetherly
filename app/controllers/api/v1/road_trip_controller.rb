@@ -7,7 +7,7 @@ class Api::V1::RoadTripController < ApplicationController
 
       render json: RoadtripSerializer.new(Roadtrip.new(params[:origin], params[:destination], trip_length, arrival_forecast))
     else
-
+      render json: {error: 'Unauthorize request'}, status: :unauthorized
     end
   end
 end
