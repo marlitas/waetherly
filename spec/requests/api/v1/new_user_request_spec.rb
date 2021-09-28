@@ -12,6 +12,7 @@ RSpec.describe 'create user' do
         password_confirmation: 'playtime'
       }, as: :json
       expect(response).to be_successful
+      expect(response.status).to eq(201)
 
       user = JSON.parse(response.body, symbolize_names: true)
 
@@ -25,16 +26,32 @@ RSpec.describe 'create user' do
       expect(new_count).to eq(old_count + 1)
     end
 
-    xit "sends error if passwords don't match" do
-
+    it "sends error if passwords don't match" do
+      post '/api/v1/users', params: {
+        email: 'sparky@dog.net',
+        password: 'playtime',
+        password_confirmation: 'spoof'
+      }, as: :json
+      expect(response).to_not be_successful
     end
 
-    xit 'sends error if email already taken' do
-
+    it 'sends error if email already taken' do
+      user = create(:user)
+      post '/api/v1/users', params: {
+        email: "#{user.email}",
+        password: 'playtime',
+        password_confirmation: 'playtime'
+      }, as: :json
+      expect(response).to_not be_successful
     end
 
-    xit 'sends error if fields are missing' do
-
+    it 'sends error if fields are missing' do
+      post '/api/v1/users', params: {
+        email: '',
+        password: 'playtime',
+        password_confirmation: 'playtime'
+      }, as: :json
+      expect(response).to_not be_successful
     end
   end
 end
