@@ -14,4 +14,9 @@ RSpec.describe 'Weather Facade' do
     expect(response).to have_key(:dt)
     expect(Time.at(response[:dt])).to be > Time.parse('2021-09-28 05:18:00')
   end
+
+  it 'returns empty hash if route is impossible', :vcr do
+    response = WeatherFacade.get_arrival_forecast({results:[locations:[{latLng: {lat: '39.738453', lng: '-104.984853'} }]]}, 'impossible route')
+    expect(response).to eq({})
+  end
 end
